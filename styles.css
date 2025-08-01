@@ -5,12 +5,13 @@
   padding: 0;
 }
 
-.card{
+.main{
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: left;
+  flex-direction: column; /* to sprawi, że dzieci (.kappa i .card) będą ustawione pionowo */
+  align-items: center; /* wyśrodkowanie w poziomie */
 }
+
+
 
 body {
   font-family: sans-serif;
