@@ -12,6 +12,10 @@
   padding-left: 20px;
 }
 
+.card {
+  width: 18rem; /* lub inna, jak chcesz */
+  margin-left: 0; /* bardzo ważne */
+}
 
 
 body {
