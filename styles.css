@@ -17,6 +17,9 @@
 .card {
   width: 18rem; /* lub inna, jak chcesz */
   margin-left: 0; /* bardzo ważne */
+  display: flex;
+  flex-direction: column; /* to sprawi, że dzieci (.kappa i .card) będą ustawione pionowo */
+  align-items: flex-start;
 }
 
 
