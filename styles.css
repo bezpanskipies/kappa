@@ -8,6 +8,7 @@
 .main{
   display: flex;
   flex-direction: column; /* to sprawi, że dzieci (.kappa i .card) będą ustawione pionowo */
+  align-items: flex-start;
   gap: 0;
   padding-left: 20px;
 }
