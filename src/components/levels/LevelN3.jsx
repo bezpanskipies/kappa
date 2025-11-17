@@ -1,5 +1,6 @@
 import React from "react";
 import "./Levels.css";
+import sredniImage from "../../assets/sredni.png";
 
 export default function LevelN3() {
   return (
@@ -9,10 +10,7 @@ export default function LevelN3() {
       aria-label="N3 Rozmowy codzienne"
     >
       <div className="level-card__visual">
-        <img
-          src="/assets/levels/n3.png"
-          alt="Ilustracja N3 — rozmowy codzienne"
-        />
+        <img src={sredniImage} alt="Ilustracja N3 — rozmowy codzienne" />
       </div>
 
       <div className="level-card__body">

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Levels.css";
+import doswiadczonyImage from "../../assets/doswiadczony.png";
 
 export default function LevelN2() {
   return (
@@ -9,7 +10,7 @@ export default function LevelN2() {
       aria-label="N2 Zaawansowany"
     >
       <div className="level-card__visual">
-        <img src="/assets/levels/n2.png" alt="Ilustracja N2 — zaawansowany" />
+        <img src={doswiadczonyImage} alt="Ilustracja N2 — zaawansowany" />
       </div>
 
       <div className="level-card__body">

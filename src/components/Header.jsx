@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.css";
+import heroImage from "../assets/hero.jpeg";
 
 export default function Header() {
   return (
@@ -7,7 +8,7 @@ export default function Header() {
       <div className="kappa-hero__content">
         <div className="kappa-hero__visual">
           <img
-            src="/public/hero.jpeg"
+            src={heroImage}
             alt="Maskotka Kappa"
             className="kappa-hero__img"
           />

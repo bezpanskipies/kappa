@@ -1,5 +1,6 @@
 import React from "react";
 import "./Levels.css";
+import mistrzImage from "../../assets/mistrz.png";
 
 export default function LevelN1() {
   return (
@@ -9,7 +10,7 @@ export default function LevelN1() {
       aria-label="N1 Mistrz"
     >
       <div className="level-card__visual">
-        <img src="/assets/levels/n1.png" alt="Ilustracja N1 — mistrz" />
+        <img src={mistrzImage} alt="Ilustracja N1 — mistrz" />
       </div>
 
       <div className="level-card__body">

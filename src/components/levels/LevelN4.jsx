@@ -1,5 +1,6 @@
 import React from "react";
 import "./Levels.css";
+import pagodaImage from "../../assets/pagoda.png";
 
 export default function LevelN4() {
   return (
@@ -9,7 +10,7 @@ export default function LevelN4() {
       aria-label="N4 Podstawy"
     >
       <div className="level-card__visual">
-        <img src="/assets/levels/n4.png" alt="Ilustracja N4 — podstawy" />
+        <img src={pagodaImage} alt="Ilustracja N4 — podstawy" />
       </div>
 
       <div className="level-card__body">

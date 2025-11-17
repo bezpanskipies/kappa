@@ -11,7 +11,7 @@ export default function Levels() {
   return (
     <section className="levels-section" id="levels" aria-label="Poziomy nauki">
       <div className="levels-section__inner">
-        <h2 className="levels-section__title">Poziomy nauki N⁵ - N1</h2>
+        <h2 className="levels-section__title">Poziomy nauki N5 - N1</h2>
 
         <div className="levels-grid">
           <LevelN5 />
