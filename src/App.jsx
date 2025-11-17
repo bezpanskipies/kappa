@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header";
 
 import Levels from "./components/levels/Levels";
-import "./components/levels/Levels.css";
+
 import Navbar from "./components/Navbar";
 
 import HowItWorks from "./components/HowItWorks";
