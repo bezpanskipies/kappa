@@ -1,0 +1,237 @@
+:root {
+  --muted: #6b6b6b;
+  --accent: #ff6b5a;
+  --card-radius: 12px;
+  --shadow-soft: 0 12px 30px rgba(16, 16, 16, 0.06);
+  --container-max: 1100px;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+}
+
+/* FOOTER - ogólne */
+.site-footer {
+  background: linear-gradient(180deg, #fbfaf9, #f6f4f3);
+  border-top: 1px solid rgba(16, 16, 16, 0.04);
+  padding: 48px 20px 28px;
+  color: #111;
+}
+
+.site-footer__inner {
+  width: 100%;
+  max-width: var(--container-max);
+}
+
+/* Grid 4 kolumny (desktop) */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
+  gap: 22px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+/* BRAND */
+.footer-brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.footer-brand__logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-soft);
+  background: white;
+}
+
+.footer-desc {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 360px;
+}
+
+/* LINKS */
+.footer-heading {
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.footer-links a {
+  color: #111;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+
+.footer-links a:hover {
+  background: rgba(0, 0, 0, 0.03);
+  transform: translateY(-3px);
+}
+
+/* CONTACT */
+.footer-address {
+  font-style: normal;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-socials {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid rgba(16, 16, 16, 0.03);
+  box-shadow: var(--shadow-soft);
+  font-weight: 800;
+  color: #111;
+  text-decoration: none;
+}
+
+/* NEWSLETTER */
+.footer-news-lead {
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.footer-news-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.footer-input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(16, 16, 16, 0.06);
+  outline: none;
+  font-size: 14px;
+  flex: 1;
+  background: white;
+  box-shadow: var(--shadow-soft);
+}
+
+.footer-input:focus {
+  border-color: rgba(255, 107, 90, 0.6);
+  box-shadow: 0 8px 28px rgba(255, 107, 90, 0.06);
+}
+
+.footer-submit {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 800;
+}
+
+/* news ok */
+.footer-news-ok {
+  margin-top: 10px;
+  color: green;
+  font-weight: 700;
+}
+
+/* BOTTOM ROW */
+.footer-bottom {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(16, 16, 16, 0.03);
+  padding-top: 14px;
+}
+
+/* legal links */
+.footer-legal {
+  display: flex;
+  gap: 12px;
+}
+
+.footer-legal__link {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* back to top */
+.footer-top {
+  background: transparent;
+  border: 1px solid rgba(16, 16, 16, 0.06);
+  width: 44px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 520px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .footer-brand__logo {
+    width: 48px;
+    height: 48px;
+  }
+  .footer-desc {
+    max-width: 100%;
+  }
+  .footer-news-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .footer-submit {
+    width: 100%;
+  }
+  .footer-top {
+    align-self: flex-end;
+  }
+}
+
+/* UTILITY */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}

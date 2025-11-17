@@ -1,0 +1,245 @@
+:root {
+  --accent: #ff6b5a;
+  --accent-2: #9b8cff;
+  --muted: #6b6b6b;
+  --card-radius: 16px;
+  --shadow: 0 20px 50px rgba(16, 16, 16, 0.06);
+  --container-max: 1100px;
+  --glass: rgba(255, 255, 255, 0.9);
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+}
+
+/* Sekcja */
+.pricing-section {
+  padding: 56px 20px 80px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0),
+    rgba(250, 248, 247, 0.6)
+  );
+}
+
+.pricing-inner {
+  width: 100%;
+  max-width: var(--container-max);
+}
+
+/* Nagłówek */
+.pricing-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.pricing-title {
+  font-family: var(--font-sans);
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.pricing-lead {
+  color: var(--muted);
+  max-width: 740px;
+  font-size: 15px;
+}
+
+/* Toggle billing */
+.pricing-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  background: transparent;
+  padding: 6px;
+  border-radius: 999px;
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 999px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.toggle-btn.active {
+  color: #000;
+}
+
+/* pill with indicator (visual only) */
+.toggle-pill {
+  width: 72px;
+  height: 34px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 6px;
+}
+
+.toggle-indicator {
+  width: 46px;
+  height: 22px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--accent), #e85b4b);
+  position: absolute;
+  left: 6px;
+  transition: transform 0.22s cubic-bezier(0.2, 0.9, 0.2, 1);
+  box-shadow: 0 8px 20px rgba(255, 107, 90, 0.12);
+}
+
+.toggle-indicator.right {
+  transform: translateX(38px);
+}
+
+/* Grid kart */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 22px;
+  align-items: stretch;
+}
+
+/* pojedyncza karta planu */
+.plan-card {
+  background: var(--glass);
+  border-radius: var(--card-radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(16, 16, 16, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: visible;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 70px rgba(16, 16, 16, 0.08);
+}
+
+/* badge */
+.plan-badge {
+  position: absolute;
+  top: -10px;
+  right: 14px;
+  background: linear-gradient(180deg, var(--accent-2), #7d6aff);
+  color: white;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  box-shadow: 0 10px 30px rgba(155, 140, 255, 0.12);
+}
+
+/* head */
+.plan-card__head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.plan-name {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.plan-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* price */
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-weight: 900;
+  font-size: 32px;
+}
+
+.plan-currency {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.plan-amount {
+  font-size: 36px;
+}
+
+.plan-period {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* features */
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1 1 auto;
+}
+
+.plan-feature {
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* CTA */
+.plan-cta {
+  display: flex;
+  justify-content: center;
+}
+
+/* featured variant */
+.plan-card--featured {
+  border: 1px solid rgba(155, 140, 255, 0.14);
+  transform: translateY(-4px);
+}
+
+/* note */
+.pricing-note {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+  .pricing-header {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .pricing-lead {
+    max-width: 100%;
+  }
+  .pricing-toggle {
+    margin-left: 0;
+  }
+}
