@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./HowItWorks.css";
+import naukaImage from "../assets/nauka.jpg";
 
 /**
  * Sekcja "Jak to działa?"
@@ -93,10 +94,7 @@ export default function HowItWorks() {
           <div className="how-grid__right" aria-hidden="true">
             <div className="how-visual">
               <div className="how-visual__bg" />
-              <img
-                src="/assets/how/illustration.png"
-                alt="Ilustracja procesu nauki"
-              />
+              <img src={naukaImage} alt="Ilustracja procesu nauki" />
             </div>
           </div>
         </div>
