@@ -1,0 +1,160 @@
+:root {
+  --card-bg: #fff;
+  --muted: #6b6b6b;
+  --accent: #ff6b5a;
+  --radius: 14px;
+  --shadow: 0 12px 30px rgba(21, 21, 21, 0.06);
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+}
+
+/* Sekcja */
+.levels-section {
+  padding: 48px 20px;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+
+.levels-section__inner {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.levels-section__title {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  margin: 0 0 22px 0;
+  font-weight: 700;
+}
+
+/* Grid kafelków */
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* Kafelki (wspólne) */
+.level-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  min-height: 260px;
+}
+
+.level-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 28px 60px rgba(21, 21, 21, 0.09);
+}
+
+.level-card__visual {
+  flex: 0 0 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.4)
+  );
+}
+
+.level-card__visual img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  display: block;
+}
+
+.level-card__body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1 1 auto;
+}
+
+.level-card__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: var(--font-sans);
+}
+
+.level-card__subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  flex: 1;
+}
+
+/* Przycisk */
+.level-card__btn {
+  align-self: flex-start;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 8px 24px rgba(255, 107, 90, 0.12);
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+.level-card__btn:active {
+  transform: translateY(1px);
+}
+
+/* Varianty kolorystyczne (dla łatwego rozróżnienia) */
+.level-card--n5 {
+  border-top: 6px solid #7ed957;
+} /* zielony */
+.level-card--n4 {
+  border-top: 6px solid #57c5ff;
+} /* błękit */
+.level-card--n3 {
+  border-top: 6px solid #ffbe5b;
+} /* żółty */
+.level-card--n2 {
+  border-top: 6px solid #ff7bbd;
+} /* różowy */
+.level-card--n1 {
+  border-top: 6px solid #9b8cff;
+} /* fiolet */
+
+/* Responsywność */
+@media (max-width: 1100px) {
+  .levels-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .levels-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .levels-section {
+    padding: 36px 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .levels-grid {
+    grid-template-columns: 1fr;
+  }
+  .level-card__visual {
+    padding: 12px;
+  }
+  .level-card__visual img {
+    max-width: 100px;
+  }
+}
