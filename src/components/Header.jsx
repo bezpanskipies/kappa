@@ -4,9 +4,10 @@ import heroImage from "../assets/hero.jpeg";
 
 export default function Header() {
   return (
-    <header className="kappa-hero" role="banner">
-      <div className="kappa-hero__content">
-        <div className="kappa-hero__visual">
+    <header className="kappa-hero" role="banner" id="home">
+      <div className="kappa-hero__content container">
+        <div className="kappa-hero__visual" aria-hidden="true">
+          <div className="kappa-hero__aura" />
           <img
             src={heroImage}
             alt="Maskotka Kappa"
@@ -22,8 +23,22 @@ export default function Header() {
           </p>
 
           <div className="kappa-hero__actions">
-            <button className="btn btn--primary">Zacznij naukę</button>
-            <button className="btn btn--outline">Zobacz poziomy</button>
+            <button
+              className="btn btn--primary"
+              onClick={() => console.log("Zacznij naukę")}
+            >
+              Zacznij naukę
+            </button>
+            <button
+              className="btn btn--outline"
+              onClick={() =>
+                document
+                  .getElementById("levels")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              Zobacz poziomy
+            </button>
           </div>
         </div>
       </div>

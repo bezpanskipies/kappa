@@ -1,27 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import "./Pricing.css";
 
 /**
- * Pricing — szkielety planów
- * - 3 karty: Basic / Pro / Premium
- * - przełącznik Monthly / Yearly (UI; możesz podpiąć logikę)
- * - miejsce na listę funkcji i CTA
+ * Pricing.jsx — odświeżony wygląd + lepszy toggle billing
+ *
+ * Logika:
+ * - plans[].priceMonthly — string lub number (np. "9.99" lub 9.99)
+ * - plans[].priceYearly — opcjonalne; jeśli nie podane, liczymy: monthly * 12 * 0.8 (rabat 20%)
+ *
+ * UI:
+ * - toggle (Miesięcznie / Rocznie) z animowaną wskazówką (keyboard accessible)
+ * - "Za darmo" dla 0
  */
 
-const plans = [
+const rawPlans = [
   {
     id: "basic",
     name: "Basic",
-    priceMonthly: "0",
-    priceYearly: "0",
+    priceMonthly: 0,
+    // priceYearly omitted -> will be computed
     subtitle: "Dla początkujących",
     features: ["Dostęp do lekcji N5", "Podstawowe quizy", "Profil użytkownika"],
   },
   {
     id: "pro",
     name: "Pro",
-    priceMonthly: "9.99",
-    priceYearly: "99",
+    priceMonthly: 9.99,
+    priceYearly: 99,
     subtitle: "Najlepszy wybór",
     features: ["Pełne kursy N5–N3", "SRS + statystyki", "Wsparcie mailowe"],
     featured: true,
@@ -29,25 +34,56 @@ const plans = [
   {
     id: "premium",
     name: "Premium",
-    priceMonthly: "19.99",
-    priceYearly: "199",
+    priceMonthly: 19.99,
+    // priceYearly omitted -> will be computed (19.99*12*0.8 ≈ 191.90)
     subtitle: "Dla ambitnych",
     features: ["Kursy N1–N2", "Lekcje konwersacyjne", "Konsultacje 1:1"],
   },
 ];
 
+function formatPriceRaw(amount) {
+  if (amount === 0) return "Za darmo";
+  // show with 2 decimals but trim .00
+  const n = Number(amount);
+  if (Number.isNaN(n)) return "-";
+  return n % 1 === 0 ? `${n} €` : `${n.toFixed(2)} €`;
+}
+
 export default function Pricing() {
   const [billing, setBilling] = useState("monthly"); // "monthly" | "yearly"
+
+  // Precompute displayed prices
+  const plans = useMemo(() => {
+    return rawPlans.map((p) => {
+      const monthly = Number(p.priceMonthly || 0);
+      const yearly =
+        p.priceYearly !== undefined
+          ? Number(p.priceYearly)
+          : Math.round(monthly * 12 * 0.8 * 100) / 100; // -20% rounding to 2 decimals
+      return { ...p, _monthly: monthly, _yearly: yearly };
+    });
+  }, []);
+
+  const handleToggleKey = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setBilling((b) => (b === "monthly" ? "yearly" : "monthly"));
+    }
+    if (e.key === "ArrowLeft") setBilling("monthly");
+    if (e.key === "ArrowRight") setBilling("yearly");
+  };
 
   return (
     <section className="pricing-section" id="pricing" aria-label="Cennik">
       <div className="pricing-inner container">
         <header className="pricing-header">
-          <h2 className="pricing-title">Cennik</h2>
-          <p className="pricing-lead">
-            Wybierz plan, który pasuje do Twojego tempa nauki. Zmieniaj billing,
-            aby zobaczyć oszczędności przy płatnościach rocznych.
-          </p>
+          <div>
+            <h2 className="pricing-title">Cennik</h2>
+            <p className="pricing-lead">
+              Wybierz plan, który pasuje do Twojego tempa nauki. Pamiętaj —
+              roczne rozliczenie oszczędza 20%.
+            </p>
+          </div>
 
           <div
             className="pricing-toggle"
@@ -62,11 +98,21 @@ export default function Pricing() {
               Miesięcznie
             </button>
 
-            <div className="toggle-pill" aria-hidden="true">
+            <div
+              className="toggle-pill"
+              role="switch"
+              tabIndex="0"
+              aria-checked={billing === "yearly"}
+              onKeyDown={handleToggleKey}
+              onClick={() =>
+                setBilling((b) => (b === "monthly" ? "yearly" : "monthly"))
+              }
+            >
               <div
                 className={`toggle-indicator ${
                   billing === "yearly" ? "right" : "left"
                 }`}
+                aria-hidden="true"
               />
             </div>
 
@@ -75,16 +121,14 @@ export default function Pricing() {
               onClick={() => setBilling("yearly")}
               aria-pressed={billing === "yearly"}
             >
-              Rocznie
-              <span className="toggle-savings"> (-20%)</span>
+              Rocznie <span className="toggle-savings">(-20%)</span>
             </button>
           </div>
         </header>
 
         <div className="pricing-grid" role="list">
           {plans.map((plan) => {
-            const price =
-              billing === "monthly" ? plan.priceMonthly : plan.priceYearly;
+            const price = billing === "monthly" ? plan._monthly : plan._yearly;
             const periodLabel = billing === "monthly" ? "mies." : "rok";
 
             return (
@@ -103,16 +147,31 @@ export default function Pricing() {
                   <p className="plan-sub">{plan.subtitle}</p>
                 </div>
 
-                <div className="plan-price">
+                <div className="plan-price" aria-hidden={price === 0}>
                   <span className="plan-currency">€</span>
-                  <span className="plan-amount">{price}</span>
+                  <span className="plan-amount">
+                    {price === 0
+                      ? "0"
+                      : billing === "monthly"
+                      ? Number.isInteger(price)
+                        ? price
+                        : price.toFixed(2)
+                      : Number.isInteger(price)
+                      ? price
+                      : price.toFixed(2)}
+                  </span>
                   <span className="plan-period">/{periodLabel}</span>
                 </div>
 
-                <ul className="plan-features" aria-hidden="false">
+                {price === 0 && <div className="plan-free">Bezpłatny</div>}
+
+                <ul className="plan-features" aria-hidden={false}>
                   {plan.features.map((f, i) => (
                     <li key={i} className="plan-feature">
-                      {f}
+                      <span className="feature-dot" aria-hidden="true">
+                        •
+                      </span>
+                      <span>{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -127,7 +186,7 @@ export default function Pricing() {
                     }
                     aria-label={`Wybierz plan ${plan.name}`}
                   >
-                    Wybierz plan
+                    {price === 0 ? "Rozpocznij darmowo" : "Wybierz plan"}
                   </button>
                 </div>
               </article>

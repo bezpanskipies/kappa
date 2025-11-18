@@ -1,34 +1,41 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./HowItWorks.css";
+
+// Twoje zdjęcie:
 import naukaImage from "../assets/nauka.jpg";
 
-/**
- * Sekcja "Jak to działa?"
- * - 3 kafelki z ikonami (podmień obrazy/ikony)
- * - duży obrazek ilustrujący proces
- * - responsywna: obrazek po prawej na desktop, nad kafelkami na mobile
- * - framer-motion dla delikatnego wejścia
- */
+/* Placeholder ikonek (później podmienisz na swoje SVG) */
+const IconPlaceholder = ({ title }) => (
+  <svg
+    width="44"
+    height="44"
+    viewBox="0 0 48 48"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <circle cx="24" cy="20" r="12" fill="#FFB6A2" />
+    <rect x="10" y="28" width="28" height="8" rx="4" fill="#9B8CFF" />
+    <title>{title}</title>
+  </svg>
+);
 
 const cards = [
   {
     id: "discover",
     title: "Wybierz poziom",
     text: "Dobierz plan pod swój poziom: N5 → N1. Krótkie lekcje, testy i powtórki.",
-    icon: "/public/rejestracja.png",
   },
   {
     id: "learn",
     title: "Ucz się krok po kroku",
     text: "Krótkie moduły z audio, native examples i ćwiczeniami praktycznymi.",
-    icon: "/assets/how/learn.svg",
   },
   {
     id: "practice",
     title: "Trening i powtórki",
     text: "System powtórek SRS + mini testy sprawiają, że materiał zostaje z Tobą.",
-    icon: "/assets/how/practice.svg",
   },
 ];
 
@@ -46,7 +53,7 @@ export default function HowItWorks() {
     <section className="how-section" id="how" aria-label="Jak to działa">
       <div className="how-section__inner container">
         <div className="how-grid">
-          {/* Left: content (cards) */}
+          {/* LEWA STRONA */}
           <div className="how-grid__left">
             <h2 className="how-title">Jak to działa?</h2>
             <p className="how-lead">
@@ -54,11 +61,7 @@ export default function HowItWorks() {
               wszystko zaprojektowane, żebyś uczył się szybko i efektywnie.
             </p>
 
-            <div
-              className="how-cards"
-              role="list"
-              aria-label="Kroki jak to działa"
-            >
+            <div className="how-cards" role="list">
               {cards.map((c, i) => (
                 <motion.article
                   className="how-card"
@@ -70,8 +73,8 @@ export default function HowItWorks() {
                   viewport={{ once: true, amount: 0.2 }}
                   variants={cardVariants}
                 >
-                  <div className="how-card__icon" aria-hidden="true">
-                    <img src={c.icon} alt="" />
+                  <div className="how-card__icon">
+                    <IconPlaceholder title={c.title} />
                   </div>
 
                   <div className="how-card__body">
@@ -79,8 +82,7 @@ export default function HowItWorks() {
                     <p className="how-card__text">{c.text}</p>
                     <button
                       className="how-card__cta"
-                      onClick={() => console.log(`Czytaj więcej: ${c.id}`)}
-                      aria-label={`Czytaj więcej o ${c.title}`}
+                      onClick={() => console.log(c.id)}
                     >
                       Czytaj więcej
                     </button>
@@ -90,11 +92,15 @@ export default function HowItWorks() {
             </div>
           </div>
 
-          {/* Right: illustrative image */}
-          <div className="how-grid__right" aria-hidden="true">
+          {/* PRAWA STRONA — Twoje zdjęcie nauka.jpg */}
+          <div className="how-grid__right">
             <div className="how-visual">
               <div className="how-visual__bg" />
-              <img src={naukaImage} alt="Ilustracja procesu nauki" />
+              <img
+                src={naukaImage}
+                alt="Proces nauki — ilustracja"
+                className="how-visual__img"
+              />
             </div>
           </div>
         </div>

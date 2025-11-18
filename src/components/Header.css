@@ -1,93 +1,167 @@
-:root {
-  --bg: #fffdfa;
-  --accent: #ff6b5a;
-  --accent-dark: #e85b4b;
-  --muted: #6b6b6b;
-  --max-width: 1050px;
-  --font-sans: "Inter", sans-serif;
-}
+/* Header.css — spójne z src/index.css (używa zmiennych globalnych) */
 
-/* ====== CAŁY HERO ====== */
 .kappa-hero {
-  padding: 80px 20px 120px;
-  background: linear-gradient(180deg, var(--bg), #f4f1ef);
+  padding: 72px 16px 96px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.72),
+    rgba(255, 255, 255, 0.6)
+  );
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
   justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.02);
 }
 
 .kappa-hero__content {
   width: 100%;
-  max-width: var(--max-width);
+  max-width: var(--container-max);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 28px;
 }
 
-/* ====== OBRAZEK + AUREOLA ====== */
+/* VISUAL & AURA */
 .kappa-hero__visual {
   position: relative;
-  margin-bottom: 40px;
-  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .kappa-hero__aura {
   position: absolute;
-  width: 420px;
-  height: 420px;
+  width: 520px;
+  height: 520px;
   border-radius: 50%;
   background: radial-gradient(
-    circle,
-    rgba(255, 107, 90, 0.25) 0%,
-    rgba(255, 107, 90, 0.05) 60%,
-    rgba(255, 107, 90, 0) 80%
+    circle at 35% 30%,
+    rgba(155, 140, 255, 0.18),
+    rgba(255, 107, 90, 0.06) 45%,
+    rgba(255, 107, 90, 0) 70%
   );
-  filter: blur(20px);
-  top: 40px;
+  filter: blur(28px);
+  z-index: 0;
+  top: 18px;
   animation: auraPulse 6s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .kappa-hero__img {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  max-width: 520px; /* większy obraz */
+  max-width: 560px;
   height: auto;
-  border-radius: 22px;
-  box-shadow: 0 24px 50px rgba(17, 17, 17, 0.12);
-  animation: float 5s ease-in-out infinite;
+  border-radius: 20px;
+  box-shadow: 0 28px 60px rgba(16, 16, 16, 0.12);
+  transform-origin: center;
+  animation: float 6s ease-in-out infinite;
 }
 
-/* ====== TEKST ====== */
+/* TEXT */
 .kappa-title {
-  font-family: var(--font-sans);
+  font-size: 48px;
   font-weight: 800;
-  font-size: 46px; /* większy */
-  margin-bottom: 18px;
+  margin: 0;
+  color: #0f1720;
+  line-height: 1.02;
 }
 
 .kappa-subtitle {
-  font-size: 20px; /* większy */
+  font-size: 20px;
   color: var(--muted);
-  margin-bottom: 28px;
-  max-width: 650px;
-  line-height: 1.55;
+  max-width: 720px;
+  margin-top: 8px;
+  margin-bottom: 6px;
+  line-height: 1.5;
 }
 
-/* ====== PRZYCISKI ====== */
+/* ACTIONS */
 .kappa-hero__actions {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 .btn {
-  font-family: var(--font-sans);
-  padding: 14px 24px;
+  font-weight: 700;
   border-radius: 999px;
-  cursor: pointer;
-  border: none;
-  font-weight: 600;
-  font-size: 16px;
+  padding: 12px 20px;
+}
+.btn--outline {
+  background: white;
+  color: var(--accent);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes auraPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 880px) {
+  .kappa-hero {
+    padding: 60px 14px 80px;
+  }
+  .kappa-hero__aura {
+    width: 380px;
+    height: 380px;
+    top: 8px;
+    filter: blur(22px);
+  }
+  .kappa-hero__img {
+    max-width: 420px;
+    border-radius: 16px;
+  }
+  .kappa-title {
+    font-size: 36px;
+  }
+  .kappa-subtitle {
+    font-size: 16px;
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 480px) {
+  .kappa-hero {
+    padding: 44px 12px 56px;
+  }
+  .kappa-hero__aura {
+    display: none;
+  } /* oszczędzamy miejsce na małym ekranie */
+  .kappa-hero__img {
+    max-width: 300px;
+  }
+  .kappa-title {
+    font-size: 28px;
+  }
 }

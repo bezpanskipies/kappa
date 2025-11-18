@@ -1,209 +1,115 @@
-/* Navbar visuals */
-.kappa-nav {
-  position: sticky;
-  top: 0;
-  z-index: 60;
-  backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.62); /* lekko przezroczyste */
-  border-bottom: 1px solid rgba(16, 16, 16, 0.04);
-}
-
-/* wewnętrzny kontener (użyj tej samej klasy container z globalnego css) */
-.kappa-nav__inner {
-  height: 72px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  justify-content: space-between;
-}
-
-/* BRAND */
-.kappa-nav__brand {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  color: #111;
-}
-
-.kappa-nav__logo {
-  width: 44px;
-  height: 44px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.kappa-nav__title {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
-  font-weight: 700;
-  font-size: 15px;
-  user-select: none;
-}
-
-.brand-main {
-  font-size: 14px;
-  color: #121212;
-}
-
-.brand-sub {
-  font-size: 11px;
-  color: rgba(0, 0, 0, 0.45);
-  font-weight: 600;
-  letter-spacing: 0.4px;
-}
-
-/* NAV LINKS (desktop) */
-.kappa-nav__links {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-/* list */
-.kappa-nav__list {
-  display: flex;
-  gap: 16px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.kappa-nav__link {
-  display: inline-block;
-  padding: 8px 6px;
-  color: #222;
-  font-weight: 600;
-  font-size: 15px;
-  border-radius: 8px;
-  transition: color 0.12s, background 0.12s, transform 0.12s;
-}
-
-.kappa-nav__link:hover,
-.kappa-nav__link:focus {
-  transform: translateY(-3px);
-  background: rgba(0, 0, 0, 0.03);
-  color: #000;
-}
-
-/* CTA group */
-.kappa-nav__ctas {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-/* Buttons (re-usable small variants) */
-.btn {
-  border: none;
-  cursor: pointer;
-  border-radius: 999px;
-  padding: 8px 14px;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.btn--primary {
-  background: linear-gradient(180deg, #ff6b5a, #e85b4b);
-  color: white;
-  box-shadow: 0 8px 24px rgba(255, 107, 90, 0.12);
-}
-
-.btn--ghost {
-  background: transparent;
-  color: #111;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 6px 12px;
-  border-radius: 10px;
-}
-
-/* HAMBURGER (mobile toggle) */
-.kappa-nav__hamburger {
-  display: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-}
-
-/* MOBILE MENU (slide down panel) */
-.kappa-nav__mobile {
+.nav {
+  position: fixed;
+  top: 16px;
+  left: 0;
   width: 100%;
-  border-top: 1px solid rgba(0, 0, 0, 0.04);
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 8px 30px rgba(16, 16, 16, 0.06);
+  z-index: 999;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+  border-radius: 18px;
 }
 
-.kappa-nav__mobile-inner {
-  padding: 18px 20px;
+.nav-inner {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 10px;
 }
 
-.kappa-nav__mobile-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.kappa-nav__mobile-link {
-  display: block;
-  padding: 12px;
-  border-radius: 10px;
+/* LOGO */
+.nav-logo {
+  font-size: 1.4rem;
   font-weight: 700;
-  color: #111;
-  background: transparent;
+  letter-spacing: 0.5px;
+  color: #2a2a2a;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
-.kappa-nav__mobile-link:hover {
-  background: rgba(0, 0, 0, 0.03);
-}
-
-/* Mobile CTA inside menu */
-.kappa-nav__mobile-ctas {
+/* LINKS */
+.nav-links {
   display: flex;
-  gap: 10px;
-  margin-top: 6px;
+  gap: 28px;
+  align-items: center;
 }
 
-/* RESPONSIVE */
-@media (max-width: 880px) {
-  .kappa-nav__list {
-    display: none;
-  }
-  .kappa-nav__ctas {
-    display: none;
-  }
-  .kappa-nav__hamburger {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .kappa-nav__inner {
-    height: 64px;
-  }
+.nav-link {
+  position: relative;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #262626;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 6px 0;
 }
 
-/* smaller screens tighten spacing */
-@media (max-width: 480px) {
-  .kappa-nav__inner {
-    padding: 6px 0;
+.nav-link__text {
+  z-index: 3;
+  position: relative;
+}
+
+/* Fancy animated underline */
+.underline {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff89a5, #9a8cff);
+  border-radius: 6px;
+  width: 0;
+}
+
+/* HAMBURGER (mobile) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+}
+
+.nav-toggle .bar {
+  width: 24px;
+  height: 3px;
+  background: #333;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.nav-toggle .bar.open:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle .bar.open:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle .bar.open:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* MOBILE */
+@media (max-width: 840px) {
+  .nav-toggle {
+    display: flex;
   }
-  .brand-main {
-    font-size: 13px;
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(14px);
+    border-radius: 16px;
+    padding: 16px 22px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    display: none;
+    flex-direction: column;
+    gap: 18px;
   }
-  .brand-sub {
-    font-size: 10px;
-  }
-  .kappa-nav__logo {
-    width: 38px;
-    height: 38px;
+
+  .nav-links.show {
+    display: flex;
   }
 }

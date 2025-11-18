@@ -1,26 +1,14 @@
-:root {
-  --muted: #6b6b6b;
-  --accent: #ff6b5a;
-  --card-radius: 16px;
-  --max-width: 1100px;
-  --shadow-soft: 0 18px 40px rgba(16, 16, 16, 0.06);
-  --glass: rgba(255, 255, 255, 0.8);
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial;
-}
+/* HowItWorks.css — używa globalnych zmiennych i spójnych shadow/radius */
 
-/* Sekcja */
 .how-section {
   padding: 56px 20px;
   background: transparent;
 }
-
 .how-section__inner {
   width: 100%;
-  max-width: var(--max-width);
+  max-width: var(--container-max);
 }
 
-/* Grid layout: left (tekst) + right (ilustracja) */
 .how-grid {
   display: grid;
   grid-template-columns: 1fr 480px;
@@ -28,77 +16,64 @@
   align-items: center;
 }
 
-/* LEWA KOLUMNA */
 .how-title {
-  font-family: var(--font-sans);
   font-size: 28px;
   font-weight: 800;
-  margin: 0 0 10px 0;
+  margin-bottom: 8px;
+  color: #111;
 }
-
 .how-lead {
-  margin: 0 0 22px 0;
   color: var(--muted);
-  font-size: 16px;
+  margin-bottom: 18px;
   max-width: 640px;
 }
 
-/* KARTY */
+/* cards */
 .how-cards {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 14px;
 }
-
 .how-card {
   display: flex;
   gap: 14px;
   align-items: flex-start;
-  background: white;
+  background: var(--glass);
   border-radius: var(--card-radius);
   padding: 18px;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(16, 16, 16, 0.03);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0, 0, 0, 0.03);
 }
-
 .how-card__icon {
   flex: 0 0 64px;
   width: 64px;
   height: 64px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(
     180deg,
     rgba(255, 107, 90, 0.06),
     rgba(155, 140, 255, 0.03)
   );
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
 .how-card__icon img {
   width: 40px;
   height: 40px;
   display: block;
 }
-
-.how-card__body {
-  flex: 1;
-}
-
 .how-card__title {
   margin: 0 0 6px 0;
   font-size: 16px;
   font-weight: 700;
+  color: #111;
 }
-
 .how-card__text {
   margin: 0 0 12px 0;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.45;
 }
-
 .how-card__cta {
   background: transparent;
   border: none;
@@ -108,13 +83,12 @@
   padding: 6px 0;
 }
 
-/* PRAWA KOLUMNA - ilustracja */
+/* visual */
 .how-grid__right {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .how-visual {
   position: relative;
   width: 100%;
@@ -123,7 +97,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .how-visual__bg {
   position: absolute;
   width: 360px;
@@ -138,7 +111,6 @@
   filter: blur(28px);
   z-index: 0;
 }
-
 .how-visual img {
   position: relative;
   z-index: 2;
@@ -148,37 +120,29 @@
   box-shadow: 0 28px 60px rgba(16, 16, 16, 0.08);
 }
 
-/* RESPONSYWNOŚĆ */
+/* responsive */
 @media (max-width: 1000px) {
   .how-grid {
     grid-template-columns: 1fr 380px;
   }
 }
-
 @media (max-width: 820px) {
   .how-grid {
     grid-template-columns: 1fr;
     gap: 22px;
   }
-
-  /* na mobile obrazek idzie NA GÓRĘ */
   .how-grid__right {
-    order: -1; /* pokazuj nad kartami */
-    margin-bottom: 6px;
+    order: -1;
   }
-
   .how-visual__bg {
     width: 260px;
     height: 260px;
     filter: blur(22px);
   }
-
   .how-visual img {
     max-width: 320px;
   }
 }
-
-/* Drobne poprawki typograficzne */
 @media (max-width: 480px) {
   .how-section {
     padding: 28px 16px;

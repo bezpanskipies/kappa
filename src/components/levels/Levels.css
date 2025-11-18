@@ -1,16 +1,10 @@
 :root {
-  --card-bg: #fff;
-  --muted: #6b6b6b;
-  --accent: #ff6b5a;
-  --radius: 14px;
-  --shadow: 0 12px 30px rgba(21, 21, 21, 0.06);
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial;
+  /* lokalne dopasowania (niewiele) */
 }
 
 /* Sekcja */
 .levels-section {
-  padding: 48px 20px;
+  padding: 56px 20px;
   display: flex;
   justify-content: center;
   background: transparent;
@@ -18,44 +12,44 @@
 
 .levels-section__inner {
   width: 100%;
-  max-width: 1100px;
+  max-width: var(--container-max);
 }
 
 .levels-section__title {
-  font-family: var(--font-sans);
-  font-size: 26px;
-  margin: 0 0 22px 0;
-  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 18px;
+  font-weight: 800;
+  color: #111;
 }
 
 /* Grid kafelków */
 .levels-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
+  gap: 20px;
   align-items: stretch;
 }
 
-/* Kafelki (wspólne) */
+/* Kafelki */
 .level-card {
-  background: var(--card-bg);
+  background: var(--glass);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   transition: transform 0.16s ease, box-shadow 0.16s ease;
-  min-height: 260px;
+  min-height: 280px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .level-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 28px 60px rgba(21, 21, 21, 0.09);
+  box-shadow: var(--shadow-lg);
 }
 
 .level-card__visual {
-  flex: 0 0 120px;
+  flex: 0 0 140px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,96 +57,80 @@
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.6),
-    rgba(255, 255, 255, 0.4)
+    rgba(255, 255, 255, 0.45)
   );
 }
 
 .level-card__visual img {
   width: 100%;
-  max-width: 120px;
+  max-width: 140px;
   height: auto;
   display: block;
 }
 
 .level-card__body {
-  padding: 16px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  flex: 1 1 auto;
-}
-
-.level-card__title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 700;
-  font-family: var(--font-sans);
-}
-
-.level-card__subtitle {
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
+  gap: 10px;
   flex: 1;
 }
 
-/* Przycisk */
+.level-card__title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+}
+.level-card__subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  flex: 1;
+}
+
 .level-card__btn {
   align-self: flex-start;
-  padding: 8px 14px;
+  padding: 9px 14px;
   border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  font-weight: 700;
   background: var(--accent);
   color: white;
+  font-weight: 800;
   box-shadow: 0 8px 24px rgba(255, 107, 90, 0.12);
-  transition: transform 0.12s ease, opacity 0.12s ease;
 }
 
-.level-card__btn:active {
-  transform: translateY(1px);
-}
-
-/* Varianty kolorystyczne (dla łatwego rozróżnienia) */
+/* kolorowe paski */
 .level-card--n5 {
   border-top: 6px solid #7ed957;
-} /* zielony */
+}
 .level-card--n4 {
   border-top: 6px solid #57c5ff;
-} /* błękit */
+}
 .level-card--n3 {
   border-top: 6px solid #ffbe5b;
-} /* żółty */
+}
 .level-card--n2 {
   border-top: 6px solid #ff7bbd;
-} /* różowy */
+}
 .level-card--n1 {
   border-top: 6px solid #9b8cff;
-} /* fiolet */
+}
 
-/* Responsywność */
+/* responsywność */
 @media (max-width: 1100px) {
   .levels-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
 @media (max-width: 720px) {
   .levels-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .levels-section {
-    padding: 36px 14px;
+    padding: 40px 14px;
   }
 }
-
 @media (max-width: 420px) {
   .levels-grid {
     grid-template-columns: 1fr;
-  }
-  .level-card__visual {
-    padding: 12px;
   }
   .level-card__visual img {
     max-width: 100px;
