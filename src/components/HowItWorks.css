@@ -1,9 +1,9 @@
-/* HowItWorks.css — używa globalnych zmiennych i spójnych shadow/radius */
-
+/* Sekcja Jak to działa */
 .how-section {
   padding: 56px 20px;
   background: transparent;
 }
+
 .how-section__inner {
   width: 100%;
   max-width: var(--container-max);
@@ -20,29 +20,33 @@
   font-size: 28px;
   font-weight: 800;
   margin-bottom: 8px;
-  color: #111;
+  color: var(--text);
 }
+
 .how-lead {
   color: var(--muted);
   margin-bottom: 18px;
   max-width: 640px;
 }
 
-/* cards */
+/* Cards */
 .how-cards {
   display: grid;
   gap: 14px;
 }
+
 .how-card {
   display: flex;
   gap: 14px;
   align-items: flex-start;
   background: var(--glass);
-  border-radius: var(--card-radius);
+  border-radius: var(--radius);
   padding: 18px;
   box-shadow: var(--shadow-md);
   border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
 }
+
 .how-card__icon {
   flex: 0 0 64px;
   width: 64px;
@@ -57,23 +61,27 @@
     rgba(155, 140, 255, 0.03)
   );
 }
+
 .how-card__icon img {
   width: 40px;
   height: 40px;
   display: block;
 }
+
 .how-card__title {
   margin: 0 0 6px 0;
   font-size: 16px;
   font-weight: 700;
-  color: #111;
+  color: var(--text);
 }
+
 .how-card__text {
   margin: 0 0 12px 0;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.45;
 }
+
 .how-card__cta {
   background: transparent;
   border: none;
@@ -81,14 +89,54 @@
   font-weight: 700;
   cursor: pointer;
   padding: 6px 0;
+  transition: color 0.22s ease;
 }
 
-/* visual */
+.how-card__cta:hover {
+  color: var(--accent-2);
+}
+
+/* rozwijany content */
+.how-card__extra {
+  margin-top: 12px;
+  padding-left: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  overflow: hidden;
+}
+
+/* lista w rozwinięciu */
+.how-card__extra ul {
+  list-style: disc;
+  padding-left: 18px;
+  margin: 8px 0 0 0;
+}
+
+.how-card__extra li {
+  margin-bottom: 6px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background 0.22s, color 0.22s;
+}
+
+.how-card__extra li:hover {
+  background: rgba(155, 140, 255, 0.08);
+  color: var(--accent-2);
+}
+
+/* Karta otwarta */
+.how-card.open {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+/* PRAWA STRONA — obrazek */
 .how-grid__right {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .how-visual {
   position: relative;
   width: 100%;
@@ -97,6 +145,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .how-visual__bg {
   position: absolute;
   width: 360px;
@@ -111,7 +160,8 @@
   filter: blur(28px);
   z-index: 0;
 }
-.how-visual img {
+
+.how-visual__img {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -120,12 +170,13 @@
   box-shadow: 0 28px 60px rgba(16, 16, 16, 0.08);
 }
 
-/* responsive */
+/* RESPONSIVE */
 @media (max-width: 1000px) {
   .how-grid {
     grid-template-columns: 1fr 380px;
   }
 }
+
 @media (max-width: 820px) {
   .how-grid {
     grid-template-columns: 1fr;
@@ -139,10 +190,11 @@
     height: 260px;
     filter: blur(22px);
   }
-  .how-visual img {
+  .how-visual__img {
     max-width: 320px;
   }
 }
+
 @media (max-width: 480px) {
   .how-section {
     padding: 28px 16px;
