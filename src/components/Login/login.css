@@ -1,0 +1,54 @@
+/* src/components/Login/Login.css */
+.login-section {
+  padding: 40px;
+  max-width: 400px;
+  margin: 0 auto;
+  background: var(--glass);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.login-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.login-form button {
+  padding: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* dużo wyżej niż navbar */
+  overflow-y: auto; /* żeby można było scrollować na małych ekranach */
+}
+
+.modal-content {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 28px 60px rgba(16, 16, 16, 0.12);
+}

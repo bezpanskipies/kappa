@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import "./Navbar.css";
+import Login from "./Login/login"; // Twój komponent logowania
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
   const links = [
     { label: "Strona główna", href: "#home" },
@@ -45,8 +47,6 @@ export default function Navbar() {
               whileTap={{ scale: 0.97 }}
             >
               <span className="nav-link__text">{l.label}</span>
-
-              {/* Fancy Underline */}
               <motion.span
                 className="underline"
                 initial={{ width: 0 }}
@@ -55,8 +55,32 @@ export default function Navbar() {
               />
             </motion.a>
           ))}
+
+          {/* Przycisk logowania */}
+          <button
+            className="nav-link login-btn"
+            onClick={() => setShowLogin(true)}
+          >
+            Zaloguj się
+          </button>
         </div>
       </div>
+
+      {/* Modal logowania */}
+      {showLogin && (
+        <div className="modal-backdrop" onClick={() => setShowLogin(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <Login />
+            <button
+              className="modal-close"
+              onClick={() => setShowLogin(false)}
+              aria-label="Zamknij logowanie"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </motion.nav>
   );
 }

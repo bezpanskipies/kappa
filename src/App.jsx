@@ -12,6 +12,7 @@ import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 
 import Footer from "./components/Footer";
+import Login from "./components/Login/login";
 
 function App() {
   return (
