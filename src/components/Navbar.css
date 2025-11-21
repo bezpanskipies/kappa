@@ -60,6 +60,23 @@
   width: 0;
 }
 
+/* LOGIN BUTTON */
+.nav-link.login-btn {
+  background: linear-gradient(90deg, #ff89a5, #9a8cff);
+  color: white;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.nav-link.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
 /* HAMBURGER (mobile) */
 .nav-toggle {
   display: none;
@@ -112,7 +129,9 @@
   .nav-links.show {
     display: flex;
   }
-} /* Modal logowania */
+}
+
+/* Modal logowania */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -143,18 +162,4 @@
   background: transparent;
   font-size: 1.2rem;
   cursor: pointer;
-}
-.nav-link.login-btn {
-  background: linear-gradient(90deg, #ff89a5, #9a8cff);
-  color: white;
-  font-weight: 700;
-  padding: 6px 14px;
-  border-radius: 999px;
-  cursor: pointer;
-  border: none;
-  transition: transform 0.2s;
-}
-
-.nav-link.login-btn:hover {
-  transform: translateY(-2px);
 }

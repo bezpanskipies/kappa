@@ -3,7 +3,10 @@ import { motion } from "framer-motion";
 import "./Navbar.css";
 import Login from "./Login/login"; // Twój komponent logowania
 
-export default function Navbar() {
+export default function Navbar({
+  isLoggedIn = false,
+  userName = "Użytkownik",
+}) {
   const [open, setOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
 
@@ -56,13 +59,19 @@ export default function Navbar() {
             </motion.a>
           ))}
 
-          {/* Przycisk logowania */}
-          <button
-            className="nav-link login-btn"
-            onClick={() => setShowLogin(true)}
-          >
-            Zaloguj się
-          </button>
+          {/* Przyciski zależne od logowania */}
+          {!isLoggedIn ? (
+            <button
+              className="nav-link login-btn"
+              onClick={() => setShowLogin(true)}
+            >
+              Zaloguj się
+            </button>
+          ) : (
+            <a href="#dashboard" className="nav-link login-btn">
+              Witaj, {userName}
+            </a>
+          )}
         </div>
       </div>
 
