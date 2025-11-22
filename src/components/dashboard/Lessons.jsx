@@ -1,13 +1,13 @@
 import React from "react";
 import "./Lessons.css";
 
-import heroImg from "../../assets/hero.jpeg";
-import kappaImg from "../../assets/pagoda.png";
+import heroImg from "../../assets/lesson1.png";
+import mainichiImg from "../../assets/mainichi.jpg";
 import hiraganaImg from "../../assets/uczen.png";
 import dialogImg from "../../assets/nauka.jpg";
-import kanjiImg from "../../assets/pagoda.png";
-import grammarImg from "../../assets/sredni.png";
-import quizImg from "../../assets/mistrz.png";
+import kanjiImg from "../../assets/kanji.png";
+import grammarImg from "../../assets/grammar.png";
+import quizImg from "../../assets/quiz.png";
 import profileIcon from "../../assets/doswiadczony.png";
 
 export default function Lessons({
@@ -39,7 +39,7 @@ export default function Lessons({
       <div className="home-grid lessons-grid">
         <div className="col col-left">
           <div className="card daily-card daily-with-image">
-            <img src={kappaImg} alt="Kappa" className="daily-image" />
+            <img src={mainichiImg} alt="Kappa" className="daily-image" />
             <div className="daily-content">
               <div className="daily-title">Codzienne wyzwanie</div>
               <div className="daily-jp">かいもの</div>
