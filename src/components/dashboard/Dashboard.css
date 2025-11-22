@@ -150,3 +150,19 @@
 .small {
   font-size: 13px;
 }
+
+/* jeśli masz już plik Dashboard.css, tylko dodaj lub dopasuj tę regułę */
+.dashboard-root {
+  display: flex;
+  min-height: 100vh;
+  gap: 18px;
+  padding: 18px;
+  box-sizing: border-box;
+
+  /* IMPORTANT: offset so top content isn't hidden behind fixed navbar */
+  padding-top: 96px; /* dostosuj jeśli Twój navbar jest wyższy/niższy */
+}
+
+/* jeśli wolisz, możesz zamiast tego dodać padding-top tylko do .dashboard-main:
+.dashboard-main { padding-top: 96px; }
+*/

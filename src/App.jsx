@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
+  useNavigate,
 } from "react-router-dom";
 
 // Komponenty
@@ -17,21 +18,84 @@ import Footer from "./components/Footer";
 import Login from "./components/Login/login";
 import Dashboard from "./components/dashboard/Dashboard";
 
-// Prostą logikę auth można zastąpić później Contextem lub backendem
-const fakeAuth = {
-  isLoggedIn: false, // zmień na true aby testować dashboard
-};
-
-function PrivateRoute({ children }) {
-  // Jeśli nie zalogowany, przekieruj na /login
-  return fakeAuth.isLoggedIn ? children : <Navigate to="/login" replace />;
+/**
+ * PrivateRoute — prosty wrapper, chroni dostęp do dashboardu
+ */
+function PrivateRoute({ children, isLoggedIn }) {
+  return isLoggedIn ? children : <Navigate to="/login" replace />;
 }
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({ name: "Użytkownik", level: "N5" });
+
+  // Wczytaj usera z localStorage przy starcie (fallback debug key też sprawdzamy)
+  useEffect(() => {
+    try {
+      const raw =
+        localStorage.getItem("kappa_user") ||
+        localStorage.getItem("kappa_user_debug");
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed.name) {
+          setUser(parsed);
+          setIsLoggedIn(true);
+        }
+      }
+    } catch (e) {
+      // nie przerywamy, tylko logujemy w konsoli
+      console.warn("App: błąd przy wczytywaniu usera z localStorage", e);
+    }
+  }, []);
+
+  // globalny handler — nasłuchiwanie eventu z Login.finalizeLogin
+  useEffect(() => {
+    const onGlobalLogin = (ev) => {
+      const u = ev?.detail || null;
+      if (u) {
+        setUser(u);
+        setIsLoggedIn(true);
+        try {
+          localStorage.setItem("kappa_user", JSON.stringify(u));
+        } catch (e) {}
+      }
+    };
+    window.addEventListener("kappa:login", onGlobalLogin);
+    return () => window.removeEventListener("kappa:login", onGlobalLogin);
+  }, []);
+
+  // funkcja do obsługi logowania gdy Login (strona) wywoła onLogin
+  const handleLogin = useCallback((userData) => {
+    if (!userData) return;
+    setUser(userData);
+    setIsLoggedIn(true);
+    try {
+      localStorage.setItem("kappa_user", JSON.stringify(userData));
+    } catch (e) {}
+  }, []);
+
+  // wylogowanie — czyścimy stan i localStorage, i przekierujemy na stronę główną
+  const handleLogout = useCallback(() => {
+    setUser({ name: "Użytkownik", level: "N5" });
+    setIsLoggedIn(false);
+    try {
+      localStorage.removeItem("kappa_user");
+      localStorage.removeItem("kappa_user_debug");
+    } catch (e) {}
+    // nawigacja bez hooka: użyj window.location (proste i pewne)
+    window.location.href = "/";
+  }, []);
+
   return (
     <Router>
       <div className="app">
-        <Navbar />
+        {/* Navbar dostaje informacje o koncie i funkcję wylogowania (opcjonalnie użyjesz) */}
+        <Navbar
+          isLoggedIn={isLoggedIn}
+          userName={user?.name}
+          onLogout={handleLogout}
+        />
+
         <main>
           <Routes>
             {/* Strona główna */}
@@ -49,20 +113,20 @@ export default function App() {
               }
             />
 
-            {/* Logowanie */}
-            <Route path="/login" element={<Login />} />
+            {/* Logowanie (strona) - przekazujemy onLogin */}
+            <Route path="/login" element={<Login onLogin={handleLogin} />} />
 
-            {/* Dashboard — dostęp tylko jeśli zalogowany */}
+            {/* Dashboard (chroniony) */}
             <Route
               path="/dashboard/*"
               element={
-                <PrivateRoute>
-                  <Dashboard />
+                <PrivateRoute isLoggedIn={isLoggedIn}>
+                  <Dashboard user={user} />
                 </PrivateRoute>
               }
             />
 
-            {/* Fallback — przekierowanie na / jeśli nic nie pasuje */}
+            {/* Fallback */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
