@@ -1,36 +1,64 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Sidebar({ open = false, onClose = () => {} }) {
   return (
-    <aside
-      className={`dash-sidebar ${open ? "open" : ""}`}
-      aria-hidden={!open && window.innerWidth < 840}
-    >
+    <aside className={`dash-sidebar ${open ? "open" : ""}`}>
       <div className="sidebar-inner">
         <div className="sidebar-logo">Kappa</div>
 
         <nav className="sidebar-nav" aria-label="Nawigacja użytkownika">
-          <a href="#/dashboard" className="sidebar-link">
+          <NavLink to="/dashboard" className="sidebar-link" onClick={onClose}>
             Dashboard
-          </a>
-          <a href="#/lessons" className="sidebar-link">
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/lessons"
+            className="sidebar-link"
+            onClick={onClose}
+          >
             Lekcje
-          </a>
-          <a href="#/test" className="sidebar-link">
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/test"
+            className="sidebar-link"
+            onClick={onClose}
+          >
             Test poziomu
-          </a>
-          <a href="#/srs" className="sidebar-link">
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/srs"
+            className="sidebar-link"
+            onClick={onClose}
+          >
             Powtórki
-          </a>
-          <a href="#/stats" className="sidebar-link">
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/stats"
+            className="sidebar-link"
+            onClick={onClose}
+          >
             Statystyki
-          </a>
-          <a href="#/billing" className="sidebar-link">
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/billing"
+            className="sidebar-link"
+            onClick={onClose}
+          >
             Subskrypcja
-          </a>
-          <a href="#/settings" className="sidebar-link">
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/settings"
+            className="sidebar-link"
+            onClick={onClose}
+          >
             Ustawienia
-          </a>
+          </NavLink>
         </nav>
 
         <div className="sidebar-footer">
